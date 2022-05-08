@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Twitsch Emote Shop Idle Game</title>
+
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="src/sytles.css" />
+
+    <style>
+      body {
+        font-family: "Open Sans", sans-serif;
+      }
+      .color-box {
+        color: #bf94ff;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-800">
+    <div class="flex justify-center my-16">
+      <h1 class="text-white text-8xl">Twitsch Emote Shop</h1>
+    </div>
+
+    <div class="flex justify-center hidden my-16">
+      <button
+        class="px-10 py-2 text-3xl text-white border bg-violet-600 rounded-xl hover:bg-violet-500"
+        onclick="clickBox(1)"
+      >
+        Click
+      </button>
+      <button
+        class="px-10 py-2 text-3xl text-white border bg-violet-600 rounded-xl hover:bg-violet-500"
+        onclick="clickBox(10)"
+      >
+        Click 10
+      </button>
+      <button
+        class="px-10 py-2 text-3xl text-white border bg-violet-600 rounded-xl hover:bg-violet-500"
+        onclick="clickBox(100)"
+      >
+        Click 100
+      </button>
+      <button
+        class="px-10 py-2 text-3xl text-white border bg-violet-600 rounded-xl hover:bg-violet-500"
+        onclick="clickBox(1000)"
+      >
+        Click 1000
+      </button>
+      <button
+        class="px-10 py-2 text-3xl text-white border bg-violet-600 rounded-xl hover:bg-violet-500"
+        onclick="reset()"
+      >
+        Reset
+      </button>
+    </div>
+
+    <div class="flex h-56">
+      <div class="flex flex-col items-center justify-center w-80">
+        <p
+          id="points-field"
+          class="items-center text-4xl text-white"
+          points-field
+        >
+          0.00
+        </p>
+        <p class="text-xl text-white">
+          <span class="text-yellow-200" id="update-field"></span> p/s
+        </p>
+        <p>
+          <img
+            class="shadow-lg"
+            onclick="clickBox(1)"
+            width="100px"
+            src="../src/twitch-vip.jpg"
+          />
+        </p>
+      </div>
+      <div class="flex">
+        <div class="flex flex-col items-center justify-center w-80">
+          <p class="text-3xl text-white">
+            <span class="font-bold text-yellow-400" id="kekwEmote-field"
+              >0</span
+            >
+            KEKW Emotes
+          </p>
+          <p class="text-xl text-white">
+            <span class="font-bold text-red-400" id="kekwEmoteCost-field"
+              >15</span
+            >
+            Points
+          </p>
+          <p class="text-xl text-white">
+            <span class="text-yellow-200" id="kekwEmotePerSecond-field"></span>
+            p/s
+          </p>
+          <p>
+            <img width="100px" src="../src/KEKW.png" onclick="buykekwEmote()" />
+          </p>
+        </div>
+        <div class="flex flex-col items-center justify-center w-80">
+          <p class="text-3xl text-white">
+            <span class="font-bold text-yellow-400" id="yepEmote-field">0</span>
+            YEP Emotes
+          </p>
+          <p class="text-xl text-white">
+            <span class="font-bold text-red-400" id="yepEmoteCost-field"
+              >80</span
+            >
+            Points
+          </p>
+          <p class="text-xl text-white">
+            <span class="text-yellow-200" id="yepEmotePerSecond-field"></span>
+            p/s
+          </p>
+          <p>
+            <img width="100px" src="../src/YEP.png" onclick="buyYepEmote()" />
+          </p>
+        </div>
+        <div class="flex flex-col items-center justify-center w-80">
+          <p class="text-3xl text-white">
+            <span class="font-bold text-yellow-400" id="poggersEmote-field"
+              >0</span
+            >
+            POGGERS Emotes
+          </p>
+          <p class="text-xl text-white">
+            <span class="font-bold text-red-400" id="poggersEmoteCost-field"
+              >720</span
+            >
+            Points
+          </p>
+          <p class="text-xl text-white">
+            <span
+              class="text-yellow-200"
+              id="poggersEmotePerSecond-field"
+            ></span>
+            p/s
+          </p>
+          <p>
+            <img
+              onclick="buypoggersEmote()"
+              width="100px"
+              src="../src/POGGERS.png"
+            />
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="game.js"></script>
+</html>

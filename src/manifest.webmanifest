@@ -1,0 +1,11 @@
+{
+    "theme_color": "#f69435",
+    "background_color": "#f69435",
+    "display": "fullscreen",
+    "scope": "/",
+    "start_url": "/index.html",
+    "name": "IdleGame",
+    "short_name": "IdleGame",
+    "description": "Simple Idle Game",
+    "icons": []
+}
