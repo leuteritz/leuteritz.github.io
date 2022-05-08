@@ -6,17 +6,23 @@ let yepEmotePerSecond = 0;
 let poggersEmoteAmount = 0;
 let poggersEmotePerSecond = 0;
 let pointsPerSecond;
-var EmoteCostkekw;
-var nextEmoteCostkekw;
-var EmoteCostyep;
-var nextEmoteCostyep;
-var EmoteCostpoggers;
-var nextEmoteCostpoggers;
+let emoteCostKekw = Math.floor(15 * Math.pow(1.07, kekwEmoteAmount));
+let emoteCostYep = Math.floor(80 * Math.pow(1.15, yepEmoteAmount));
+let emoteCostPoggers = Math.floor(720 * Math.pow(1.14, poggersEmoteAmount));
 
-let shopUpgradeCost1 = 30;
-let shopUpgradeAmont = 0;
+let clickmultiplier = 1;
 
-function clickBox(number) {
+let shopUpgradeAmont1 = 0;
+let shopUpgradeCost1 = Math.floor(Math.pow(30, shopUpgradeAmont1 + 1));
+
+function clickBox() {
+  points += clickmultiplier;
+  document.getElementById("points-field").innerHTML = (
+    Math.round(points * 100) / 100
+  ).toFixed(2);
+}
+
+function clickBoxAuto(number) {
   points += number;
   document.getElementById("points-field").innerHTML = (
     Math.round(points * 100) / 100
@@ -24,75 +30,84 @@ function clickBox(number) {
 }
 
 function buykekwEmote() {
-  EmoteCostkekw = Math.floor(15 * Math.pow(1.07, kekwEmoteAmount));
-  if (points >= EmoteCostkekw) {
+  if (points >= emoteCostKekw) {
     kekwEmoteAmount++;
-    points -= EmoteCostkekw;
+    points -= emoteCostKekw;
     document.getElementById("points-field").innerHTML = (
       Math.round(points * 100) / 100
     ).toFixed(2);
     document.getElementById("kekwEmote-field").innerHTML = kekwEmoteAmount;
 
-    nextEmoteCostkekw = Math.floor(15 * Math.pow(1.07, kekwEmoteAmount));
-    document.getElementById("kekwEmoteCost-field").innerHTML =
-      nextEmoteCostkekw;
+    emoteCostKekw = Math.floor(15 * Math.pow(1.07, kekwEmoteAmount));
+
+    document.getElementById("kekwEmoteCost-field").innerHTML = emoteCostKekw;
+  }
+}
+
+function changeColorKekw() {
+  if (points >= emoteCostKekw) {
+    document.getElementById("kekwEmoteCost-field").style.color =
+      "rgb(74 222 128 / var(--tw-text-opacity))";
+  } else {
+    document.getElementById("kekwEmoteCost-field").style.color =
+      "rgb(248 113 113 / var(--tw-text-opacity))";
   }
 }
 
 function buyYepEmote() {
-  let EmoteCost = Math.floor(80 * Math.pow(1.15, yepEmoteAmount));
-  if (points >= EmoteCost) {
+  if (points >= emoteCostYep) {
     yepEmoteAmount++;
-    points -= EmoteCost;
+    points -= emoteCostYep;
     document.getElementById("points-field").innerHTML = (
       Math.round(points * 100) / 100
     ).toFixed(2);
     document.getElementById("yepEmote-field").innerHTML = yepEmoteAmount;
 
-    let nextEmoteCost = Math.floor(80 * Math.pow(1.15, yepEmoteAmount));
-    document.getElementById("yepEmoteCost-field").innerHTML = nextEmoteCost;
+    emoteCostYep = Math.floor(80 * Math.pow(1.15, yepEmoteAmount));
+
+    document.getElementById("yepEmoteCost-field").innerHTML = emoteCostYep;
   }
 }
 
-function buypoggersEmote() {
-  let EmoteCost = Math.floor(720 * Math.pow(1.14, poggersEmoteAmount));
-  if (points >= EmoteCost) {
+function changeColorYep() {
+  if (points >= emoteCostYep) {
+    document.getElementById("yepEmoteCost-field").style.color =
+      "rgb(74 222 128 / var(--tw-text-opacity))";
+  } else {
+    document.getElementById("yepEmoteCost-field").style.color =
+      "rgb(248 113 113 / var(--tw-text-opacity))";
+  }
+}
+
+function buyPoggersEmote() {
+  if (points >= emoteCostPoggers) {
     poggersEmoteAmount++;
-    points -= EmoteCost;
+    points -= emoteCostPoggers;
     document.getElementById("points-field").innerHTML = (
       Math.round(points * 100) / 100
     ).toFixed(2);
     document.getElementById("poggersEmote-field").innerHTML =
       poggersEmoteAmount;
 
-    let nextEmoteCost = Math.floor(720 * Math.pow(1.14, poggersEmoteAmount));
-    document.getElementById("poggersEmoteCost-field").innerHTML = nextEmoteCost;
+    emoteCostPoggers = Math.floor(720 * Math.pow(1.14, poggersEmoteAmount));
+
+    document.getElementById("poggersEmoteCost-field").innerHTML =
+      emoteCostPoggers;
   }
 }
 
-function reset() {
-  points = 0;
-  kekwEmoteAmount = 0;
-  yepEmoteAmount = 0;
-  poggersEmoteAmount = 0;
-  kekwEmotePerSecond = 0;
-  yepEmotePerSecond = 0;
-  poggersEmotePerSecond = 0;
-  pointsPerSecond = 0;
-
-  document.getElementById("points-field").innerHTML = (
-    Math.round(points * 100) / 100
-  ).toFixed(2);
-  document.getElementById("kekwEmote-field").innerHTML = kekwEmoteAmount;
-  document.getElementById("kekwEmoteCost-field").innerHTML = 15;
-  document.getElementById("yepEmote-field").innerHTML = yepEmoteAmount;
-  document.getElementById("yepEmoteCost-field").innerHTML = 80;
-  document.getElementById("poggersEmote-field").innerHTML = poggersEmoteAmount;
-  document.getElementById("poggersEmoteCost-field").innerHTML = 720;
+function changeColorPoggers() {
+  if (points >= emoteCostPoggers) {
+    document.getElementById("poggersEmoteCost-field").style.color =
+      "rgb(74 222 128 / var(--tw-text-opacity))";
+  } else {
+    document.getElementById("poggersEmoteCost-field").style.color =
+      "rgb(248 113 113 / var(--tw-text-opacity))";
+  }
 }
 
 window.setInterval(function autoClick() {
-  clickBox(pointsPerSecond);
+  clickBoxAuto(pointsPerSecond);
 }, 1000);
 
 function calcpointsPerSecond() {
@@ -103,42 +118,35 @@ function calcpointsPerSecond() {
     kekwEmotePerSecond + yepEmotePerSecond + poggersEmotePerSecond;
 }
 
-function changeColorkekw() {
-  nextEmoteCostkekw = Math.floor(15 * Math.pow(1.07, kekwEmoteAmount));
-  if (points >= nextEmoteCostkekw) {
-    document.getElementById("kekwEmoteCost-field").style.color =
+function buyClickUpgrade1() {
+  if (points >= shopUpgradeCost1) {
+    points -= shopUpgradeCost1;
+    shopUpgradeAmont1++;
+    clickmultiplier++;
+    document.getElementById("points-field").innerHTML = (
+      Math.round(points * 100) / 100
+    ).toFixed(2);
+    shopUpgradeCost1 = Math.floor(Math.pow(30, shopUpgradeAmont1 + 1));
+    document.getElementById("clickUpgradeCost-field").innerHTML =
+      shopUpgradeCost1;
+  }
+}
+
+function changeColorClickUpgrade1() {
+  if (points >= shopUpgradeCost1) {
+    document.getElementById("clickUpgradeCost-field").style.color =
       "rgb(74 222 128 / var(--tw-text-opacity))";
   } else {
-    document.getElementById("kekwEmoteCost-field").style.color =
+    document.getElementById("clickUpgradeCost-field").style.color =
       "rgb(248 113 113 / var(--tw-text-opacity))";
   }
 }
 
-function changeColorpoggers() {
-  nextEmoteCostpoggers = Math.floor(720 * Math.pow(1.14, poggersEmoteAmount));
-  if (points >= nextEmoteCostpoggers) {
-    document.getElementById("poggersEmoteCost-field").style.color =
-      "rgb(74 222 128 / var(--tw-text-opacity))";
-  } else {
-    document.getElementById("poggersEmoteCost-field").style.color =
-      "rgb(248 113 113 / var(--tw-text-opacity))";
-  }
-}
-
-function changeColoryep() {
-  nextEmoteCostyep = Math.floor(80 * Math.pow(1.15, yepEmoteAmount));
-  if (points >= nextEmoteCostyep) {
-    document.getElementById("yepEmoteCost-field").style.color =
-      "rgb(74 222 128 / var(--tw-text-opacity))";
-  } else {
-    document.getElementById("yepEmoteCost-field").style.color =
-      "rgb(248 113 113 / var(--tw-text-opacity))";
-  }
-}
 window.setInterval(function updateCost() {
-  changeColorkekw();
-  changeColorpoggers();
-  changeColoryep();
+  changeColorKekw();
+  changeColorPoggers();
+  changeColorYep();
+  changeColorClickUpgrade1();
 }, 1);
 
 window.setInterval(function showpointsPerSecond() {

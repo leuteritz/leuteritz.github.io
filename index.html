@@ -65,19 +65,13 @@
 
     <div class="flex justify-center h-56 border-2 mx-72 rounded-2xl">
       <div class="flex flex-col items-center justify-center w-80">
-        <p
-          id="points-field"
-          class="items-center text-4xl text-white"
-          points-field
-        >
-          0.00
-        </p>
+        <p id="points-field" class="items-center text-4xl text-white">0.00</p>
         <p class="text-xl text-white">
           <span class="text-yellow-200" id="update-field"></span> p/s
         </p>
         <p>
           <img
-            class="shadow-lg"
+            class="shadow-lg hover:cursor-pointer"
             onclick="clickBox(1)"
             width="100px"
             src="../src/twitch-vip.jpg"
@@ -103,7 +97,12 @@
             p/s
           </p>
           <p>
-            <img width="100px" src="../src/KEKW.png" onclick="buykekwEmote()" />
+            <img
+              class="shadow-lg hover:cursor-pointer"
+              width="100px"
+              src="../src/KEKW.png"
+              onclick="buykekwEmote()"
+            />
           </p>
         </div>
         <div class="flex flex-col items-center justify-center w-80">
@@ -122,7 +121,12 @@
             p/s
           </p>
           <p>
-            <img width="100px" src="../src/YEP.png" onclick="buyYepEmote()" />
+            <img
+              class="shadow-lg hover:cursor-pointer"
+              width="100px"
+              src="../src/YEP.png"
+              onclick="buyYepEmote()"
+            />
           </p>
         </div>
         <div class="flex flex-col items-center justify-center w-80">
@@ -147,7 +151,8 @@
           </p>
           <p>
             <img
-              onclick="buypoggersEmote()"
+              class="shadow-lg hover:cursor-pointer"
+              onclick="buyPoggersEmote()"
               width="100px"
               src="../src/POGGERS.png"
             />
@@ -155,7 +160,14 @@
         </div>
       </div>
     </div>
-    <div class="flex justify-center h-56 mt-4 border-2 mx-72 rounded-2xl"></div>
+    <div class="flex h-56 mt-4 border-2 mx-72 ">
+      <div class="text-center border mb-28">
+        <p><img class="hover:cursor-pointer" onclick="buyClickUpgrade1()" width="80px" src="../src/962936-200.png" /></p>
+        </p>
+        <span class="text-xl text-red-400" id="clickUpgradeCost-field">30</span>
+        
+      </div>
+    </div>
   </body>
   <script src="game.js"></script>
 </html>
