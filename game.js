@@ -14,6 +14,8 @@ let clickmultiplier = 1;
 
 let shopUpgradeAmont1 = 0;
 let shopUpgradeCost1 = Math.floor(Math.pow(30, shopUpgradeAmont1 + 1));
+let kekwUpgradeAmount1 = 0;
+let kekwUpgradeCost1 = Math.floor(Math.pow(100, kekwUpgradeAmount1 + 1));
 
 function clickBox() {
   points += clickmultiplier;
@@ -111,7 +113,7 @@ window.setInterval(function autoClick() {
 }, 1000);
 
 function calcpointsPerSecond() {
-  kekwEmotePerSecond = kekwEmoteAmount * 1.5;
+  kekwEmotePerSecond = kekwEmoteAmount * 1.5 * (kekwUpgradeAmount1 + 1);
   yepEmotePerSecond = yepEmoteAmount * 20;
   poggersEmotePerSecond = poggersEmoteAmount * 90;
   pointsPerSecond =
@@ -142,11 +144,35 @@ function changeColorClickUpgrade1() {
   }
 }
 
+function buykekwUpgrade1() {
+  if (points >= kekwUpgradeCost1) {
+    points -= kekwUpgradeCost1;
+    kekwUpgradeAmount1++;
+    document.getElementById("points-field").innerHTML = (
+      Math.round(points * 100) / 100
+    ).toFixed(2);
+    kekwUpgradeCost1 = Math.floor(Math.pow(100, kekwUpgradeAmount1 + 1));
+    document.getElementById("kekwUpgradeCost1-field").innerHTML =
+      kekwUpgradeCost1;
+  }
+}
+
+function changeColorKekwUpgrade1() {
+  if (points >= kekwUpgradeCost1) {
+    document.getElementById("kekwUpgradeCost1-field").style.color =
+      "rgb(74 222 128 / var(--tw-text-opacity))";
+  } else {
+    document.getElementById("kekwUpgradeCost1-field").style.color =
+      "rgb(248 113 113 / var(--tw-text-opacity))";
+  }
+}
+
 window.setInterval(function updateCost() {
   changeColorKekw();
   changeColorPoggers();
   changeColorYep();
   changeColorClickUpgrade1();
+  changeColorKekwUpgrade1();
 }, 1);
 
 window.setInterval(function showpointsPerSecond() {
