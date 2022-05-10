@@ -15,7 +15,11 @@ let clickmultiplier = 1;
 let shopUpgradeAmont1 = 0;
 let shopUpgradeCost1 = Math.floor(Math.pow(30, shopUpgradeAmont1 + 1));
 let kekwUpgradeAmount1 = 0;
-let kekwUpgradeCost1 = Math.floor(Math.pow(100, kekwUpgradeAmount1 + 1));
+let kekwUpgradeCost1;
+let yepUpgradeAmount1 = 0;
+let yepUpgradeCost1;
+let poggersUpgradeAmount1 = 0;
+let poggersUpgradeCost1;
 
 function clickBox() {
   points += clickmultiplier;
@@ -69,32 +73,64 @@ function buyClickUpgrade1() {
   }
 }
 
-// Updates KEKW upgrade
+function buyEmoteUpgrade(emoteUpgradeCost, emoteSelected) {
+  if (points >= emoteUpgradeCost) {
+    points -= emoteUpgradeCost;
+    document.getElementById("points-field").innerHTML = (
+      Math.round(points * 100) / 100
+    ).toFixed(2);
+
+    switch (emoteSelected) {
+      case 0: {
+        kekwUpgradeAmount1++;
+        break;
+      }
+      case 1: {
+        yepUpgradeAmount1++;
+        break;
+      }
+      case 2: {
+        poggersUpgradeAmount1++;
+        break;
+      }
+    }
+  }
+}
+
+// Updates KEKW Upgrade
 function updateKekwGui() {
   document.getElementById("kekwEmote-field").innerHTML = kekwEmoteAmount;
   emoteCostKekw = Math.floor(15 * Math.pow(1.07, kekwEmoteAmount));
   document.getElementById("kekwEmoteCost-field").innerHTML = emoteCostKekw;
-  document.getElementById("kekwEmotePerSecond-field").textContent =
+  document.getElementById("kekwEmotePerSecond-field").innerHTML =
     kekwEmotePerSecond;
+  kekwUpgradeCost1 = Math.floor(Math.pow(100, kekwUpgradeAmount1 + 1));
+  document.getElementById("kekwUpgradeCost1-field").innerHTML =
+    kekwUpgradeCost1;
 }
 
-// Updates YEP upgrade
+// Updates YEP Upgrade
 function updateYepGui() {
   document.getElementById("yepEmote-field").innerHTML = yepEmoteAmount;
   emoteCostYep = Math.floor(80 * Math.pow(1.15, yepEmoteAmount));
   document.getElementById("yepEmoteCost-field").innerHTML = emoteCostYep;
-  document.getElementById("yepEmotePerSecond-field").textContent =
+  document.getElementById("yepEmotePerSecond-field").innerHTML =
     yepEmotePerSecond;
+  yepUpgradeCost1 = Math.floor(Math.pow(1000, yepUpgradeAmount1 + 1));
+  document.getElementById("yepUpgradeCost1-field").innerHTML = yepUpgradeCost1;
 }
 
-// Updates POGGERS upgrade
+// Updates POGGERS Upgrade
 function updatePoggersGui() {
   document.getElementById("poggersEmote-field").innerHTML = poggersEmoteAmount;
   emoteCostPoggers = Math.floor(720 * Math.pow(1.14, poggersEmoteAmount));
   document.getElementById("poggersEmoteCost-field").innerHTML =
     emoteCostPoggers;
-  document.getElementById("poggersEmotePerSecond-field").textContent =
+  document.getElementById("poggersEmotePerSecond-field").innerHTML =
     poggersEmotePerSecond;
+  poggersUpgradeCost1 = Math.floor(Math.pow(10000, poggersUpgradeAmount1 + 1));
+  document.getElementById("poggersUpgradeCost1-field").innerHTML =
+    poggersUpgradeCost1;
 }
 
 // Updates all Emotes
@@ -107,8 +143,8 @@ function updateGui() {
 // Calculates Points Per Second
 function calcpointsPerSecond() {
   kekwEmotePerSecond = kekwEmoteAmount * 1.5 * (kekwUpgradeAmount1 + 1);
-  yepEmotePerSecond = yepEmoteAmount * 20;
-  poggersEmotePerSecond = poggersEmoteAmount * 90;
+  yepEmotePerSecond = yepEmoteAmount * 20 * (yepUpgradeAmount1 + 1);
+  poggersEmotePerSecond = poggersEmoteAmount * 90 * (poggersUpgradeAmount1 + 1);
   pointsPerSecond =
     kekwEmotePerSecond + yepEmotePerSecond + poggersEmotePerSecond;
 }
@@ -128,6 +164,13 @@ function changeColorKekw() {
     document.getElementById("kekwEmoteCost-field").style.color =
       "rgb(248 113 113 / var(--tw-text-opacity))";
   }
+  if (points >= kekwUpgradeCost1) {
+    document.getElementById("kekwUpgradeCost1-field").style.color =
+      "rgb(74 222 128 / var(--tw-text-opacity))";
+  } else {
+    document.getElementById("kekwUpgradeCost1-field").style.color =
+      "rgb(248 113 113 / var(--tw-text-opacity))";
+  }
 }
 
 // Changes YEP Point Color
@@ -137,6 +180,13 @@ function changeColorYep() {
       "rgb(74 222 128 / var(--tw-text-opacity))";
   } else {
     document.getElementById("yepEmoteCost-field").style.color =
+      "rgb(248 113 113 / var(--tw-text-opacity))";
+  }
+  if (points >= yepUpgradeCost1) {
+    document.getElementById("yepUpgradeCost1-field").style.color =
+      "rgb(74 222 128 / var(--tw-text-opacity))";
+  } else {
+    document.getElementById("yepUpgradeCost1-field").style.color =
       "rgb(248 113 113 / var(--tw-text-opacity))";
   }
 }
@@ -150,6 +200,24 @@ function changeColorPoggers() {
     document.getElementById("poggersEmoteCost-field").style.color =
       "rgb(248 113 113 / var(--tw-text-opacity))";
   }
+  if (points >= poggersUpgradeCost1) {
+    document.getElementById("poggersUpgradeCost1-field").style.color =
+      "rgb(74 222 128 / var(--tw-text-opacity))";
+  } else {
+    document.getElementById("poggersUpgradeCost1-field").style.color =
+      "rgb(248 113 113 / var(--tw-text-opacity))";
+  }
+}
+
+// Change Click Upgrade 1 Color
+function changeColorClickUpgrade1() {
+  if (points >= shopUpgradeCost1) {
+    document.getElementById("clickUpgradeCost-field").style.color =
+      "rgb(74 222 128 / var(--tw-text-opacity))";
+  } else {
+    document.getElementById("clickUpgradeCost-field").style.color =
+      "rgb(248 113 113 / var(--tw-text-opacity))";
+  }
 }
 
 // Changes all Point Colors
@@ -158,7 +226,6 @@ function changeColor() {
   changeColorYep();
   changeColorPoggers();
   changeColorClickUpgrade1();
-  changeColorKekwUpgrade1();
 }
 
 // Global Update Function
@@ -172,36 +239,3 @@ window.setInterval(function updateInterface() {
 window.setInterval(function autoClick() {
   clickBoxAuto(pointsPerSecond);
 }, 1000);
-
-function changeColorClickUpgrade1() {
-  if (points >= shopUpgradeCost1) {
-    document.getElementById("clickUpgradeCost-field").style.color =
-      "rgb(74 222 128 / var(--tw-text-opacity))";
-  } else {
-    document.getElementById("clickUpgradeCost-field").style.color =
-      "rgb(248 113 113 / var(--tw-text-opacity))";
-  }
-}
-
-function buykekwUpgrade1() {
-  if (points >= kekwUpgradeCost1) {
-    points -= kekwUpgradeCost1;
-    kekwUpgradeAmount1++;
-    document.getElementById("points-field").innerHTML = (
-      Math.round(points * 100) / 100
-    ).toFixed(2);
-    kekwUpgradeCost1 = Math.floor(Math.pow(100, kekwUpgradeAmount1 + 1));
-    document.getElementById("kekwUpgradeCost1-field").innerHTML =
-      kekwUpgradeCost1;
-  }
-}
-
-function changeColorKekwUpgrade1() {
-  if (points >= kekwUpgradeCost1) {
-    document.getElementById("kekwUpgradeCost1-field").style.color =
-      "rgb(74 222 128 / var(--tw-text-opacity))";
-  } else {
-    document.getElementById("kekwUpgradeCost1-field").style.color =
-      "rgb(248 113 113 / var(--tw-text-opacity))";
-  }
-}
