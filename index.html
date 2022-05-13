@@ -14,6 +14,8 @@
       rel="stylesheet"
     />
 
+    <script> src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"</script>
+
     <link rel="stylesheet" href="src/sytles.css" />
 
     <style>
@@ -23,6 +25,9 @@
       .color-box {
         color: #bf94ff;
       }
+
+     
+
     </style>
   </head>
   <body class="bg-gray-800">
@@ -38,11 +43,15 @@
         </p>
         <p>
           <img
+            id="emote-image"
             class="shadow-lg hover:cursor-pointer"
-            onclick="clickBox(1)"
+            onclick="clickBox(1), showClicks()"
             width="100px"
             src="../src/twitch-vip.jpg"
           />
+          <div  class="text-xl text-white" >
+            <span id="emote-image-text" class="text-yellow-200"> + 1</span> p/c
+          </div>
         </p>
       </div>
       <div class="flex">
@@ -148,8 +157,9 @@
       </div>
       <div class="text-center mb-28 ml-14">
         <img class="hover:cursor-pointer" onclick="buyEmoteUpgrade(poggersUpgradeCost1,2)" width="80px" src="../src/POGGERS.png" >
-        <span class="text-xl font-bold text-red-400" id="poggersUpgradeCost1-field">1000</span>
+        <span class="text-xl font-bold text-red-400" id="poggersUpgradeCost1-field">10000</span>
       </div>
+      </template>
     </div>
     <div class="bottom-0 flex ml-4 mt-28 ">
       <p class="text-xl text-white">

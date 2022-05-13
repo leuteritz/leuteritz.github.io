@@ -63,7 +63,7 @@ function buyClickUpgrade1() {
   if (points >= shopUpgradeCost1) {
     points -= shopUpgradeCost1;
     shopUpgradeAmont1++;
-    clickmultiplier++;
+    clickmultiplier += Math.floor(Math.pow(1, shopUpgradeAmont1 + 1));
     document.getElementById("points-field").innerHTML = (
       Math.round(points * 100) / 100
     ).toFixed(2);
@@ -133,11 +133,18 @@ function updatePoggersGui() {
     poggersUpgradeCost1;
 }
 
+// Updates Clicks
+function updateClicks() {
+  document.getElementById("emote-image-text").innerHTML =
+    "+ " + clickmultiplier;
+}
+
 // Updates all Emotes
 function updateGui() {
   updateKekwGui();
   updateYepGui();
   updatePoggersGui();
+  updateClicks();
 }
 
 // Calculates Points Per Second
