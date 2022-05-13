@@ -63,7 +63,7 @@ function buyClickUpgrade1() {
   if (points >= shopUpgradeCost1) {
     points -= shopUpgradeCost1;
     shopUpgradeAmont1++;
-    clickmultiplier += Math.floor(Math.pow(1, shopUpgradeAmont1 + 1));
+    clickmultiplier += Math.floor(Math.pow(2, shopUpgradeAmont1 + 1));
     document.getElementById("points-field").innerHTML = (
       Math.round(points * 100) / 100
     ).toFixed(2);
