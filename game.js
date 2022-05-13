@@ -137,7 +137,13 @@ function updateKekwGui() {
   document.getElementById("kekwEmoteCost-field").innerHTML = emoteCostKekw;
   document.getElementById("kekwEmotePerSecond-field").innerHTML =
     kekwEmotePerSecond;
-  kekwUpgradeCost1 = Math.floor(Math.pow(100, kekwUpgradeAmount1 + 1));
+  kekwUpgradeCost1 =
+    kekwUpgradeAmount2 > 0
+      ? Math.floor(
+          Math.floor(100 * kekwUpgradeAmount1 * 50) / (kekwUpgradeAmount2 * 2)
+        )
+      : Math.floor(100 * (kekwUpgradeAmount1 * 50) + 100);
+  console.log(kekwUpgradeCost1);
   document.getElementById("kekwUpgradeCost1-field").innerHTML =
     kekwUpgradeCost1;
   kekwUpgradeCost2 =
@@ -213,6 +219,13 @@ function changeColorKekw() {
       "rgb(74 222 128 / var(--tw-text-opacity))";
   } else {
     document.getElementById("kekwUpgradeCost1-field").style.color =
+      "rgb(248 113 113 / var(--tw-text-opacity))";
+  }
+  if (points >= kekwUpgradeCost2) {
+    document.getElementById("kekwUpgradeCost2-field").style.color =
+      "rgb(74 222 128 / var(--tw-text-opacity))";
+  } else {
+    document.getElementById("kekwUpgradeCost2-field").style.color =
       "rgb(248 113 113 / var(--tw-text-opacity))";
   }
 }
