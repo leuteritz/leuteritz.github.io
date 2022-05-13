@@ -21,6 +21,9 @@ let yepUpgradeCost1;
 let poggersUpgradeAmount1 = 0;
 let poggersUpgradeCost1;
 
+let kekwUpgradeAmount2 = 0;
+let kekwUpgradeCost2;
+
 function clickBox() {
   points += clickmultiplier;
   document.getElementById("points-field").innerHTML = (
@@ -73,7 +76,7 @@ function buyClickUpgrade1() {
   }
 }
 
-function buyEmoteUpgrade(emoteUpgradeCost, emoteSelected) {
+function buyEmoteUpgrade1(emoteUpgradeCost, emoteSelected) {
   if (points >= emoteUpgradeCost) {
     points -= emoteUpgradeCost;
     document.getElementById("points-field").innerHTML = (
@@ -97,16 +100,50 @@ function buyEmoteUpgrade(emoteUpgradeCost, emoteSelected) {
   }
 }
 
+function buyEmoteUpgrade2(emoteUpgradeCost, emoteSelected) {
+  if (points >= emoteUpgradeCost) {
+    points -= emoteUpgradeCost;
+    document.getElementById("points-field").innerHTML = (
+      Math.round(points * 100) / 100
+    ).toFixed(2);
+
+    switch (emoteSelected) {
+      case 0: {
+        kekwUpgradeAmount2++;
+        break;
+      }
+      case 1: {
+        yepUpgradeAmount2++;
+        break;
+      }
+      case 2: {
+        poggersUpgradeAmount2++;
+        break;
+      }
+    }
+  }
+}
+
 // Updates KEKW Upgrade
 function updateKekwGui() {
   document.getElementById("kekwEmote-field").innerHTML = kekwEmoteAmount;
-  emoteCostKekw = Math.floor(15 * Math.pow(1.07, kekwEmoteAmount));
+  emoteCostKekw =
+    kekwUpgradeAmount2 > 0
+      ? Math.floor(
+          Math.floor(15 * Math.pow(1.07, kekwEmoteAmount)) /
+            (kekwUpgradeAmount2 * 2)
+        )
+      : Math.floor(15 * Math.pow(1.07, kekwEmoteAmount));
   document.getElementById("kekwEmoteCost-field").innerHTML = emoteCostKekw;
   document.getElementById("kekwEmotePerSecond-field").innerHTML =
     kekwEmotePerSecond;
   kekwUpgradeCost1 = Math.floor(Math.pow(100, kekwUpgradeAmount1 + 1));
   document.getElementById("kekwUpgradeCost1-field").innerHTML =
     kekwUpgradeCost1;
+  kekwUpgradeCost2 =
+    kekwUpgradeAmount2 > 0 ? Math.floor(1000 * kekwUpgradeAmount2 * 50) : 1000;
+  document.getElementById("kekwUpgradeCost2-field").innerHTML =
+    kekwUpgradeCost2;
 }
 
 // Updates YEP Upgrade
