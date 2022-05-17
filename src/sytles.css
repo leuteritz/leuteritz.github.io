@@ -482,6 +482,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 18rem;
 }
 
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .mt-10 {
   margin-top: 2.5rem;
 }
@@ -506,6 +511,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 7rem;
 }
 
+.ml-72 {
+  margin-left: 18rem;
+}
+
+.mr-72 {
+  margin-right: 18rem;
+}
+
 .flex {
   display: flex;
 }
@@ -514,8 +527,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 14rem;
 }
 
+.h-screen {
+  height: 100vh;
+}
+
 .w-80 {
   width: 20rem;
+}
+
+.w-full {
+  width: 100%;
 }
 
 .flex-col {
@@ -528,6 +549,22 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .justify-center {
   justify-content: center;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
+.overflow-y-hidden {
+  overflow-y: hidden;
 }
 
 .rounded-2xl {

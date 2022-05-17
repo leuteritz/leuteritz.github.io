@@ -23,6 +23,8 @@ let poggersUpgradeCost1;
 
 let kekwUpgradeAmount2 = 0;
 let kekwUpgradeCost2;
+let yepUpgradeAmount2 = 0;
+let yepUpgradeCost2;
 
 function clickBox() {
   points += clickmultiplier;
@@ -143,7 +145,7 @@ function updateKekwGui() {
           Math.floor(100 * kekwUpgradeAmount1 * 50) / (kekwUpgradeAmount2 * 2)
         )
       : Math.floor(100 * (kekwUpgradeAmount1 * 50) + 100);
-  console.log(kekwUpgradeCost1);
+
   document.getElementById("kekwUpgradeCost1-field").innerHTML =
     kekwUpgradeCost1;
   kekwUpgradeCost2 =
@@ -155,12 +157,27 @@ function updateKekwGui() {
 // Updates YEP Upgrade
 function updateYepGui() {
   document.getElementById("yepEmote-field").innerHTML = yepEmoteAmount;
-  emoteCostYep = Math.floor(80 * Math.pow(1.15, yepEmoteAmount));
+  emoteCostYep =
+    yepUpgradeAmount2 > 0
+      ? Math.floor(
+          Math.floor(80 * Math.pow(1.15, yepEmoteAmount)) /
+            (yepUpgradeAmount2 * 2)
+        )
+      : Math.floor(80 * Math.pow(1.15, yepEmoteAmount));
   document.getElementById("yepEmoteCost-field").innerHTML = emoteCostYep;
   document.getElementById("yepEmotePerSecond-field").innerHTML =
     yepEmotePerSecond;
-  yepUpgradeCost1 = Math.floor(Math.pow(1000, yepUpgradeAmount1 + 1));
+  yepUpgradeCost1 =
+    yepUpgradeAmount2 > 0
+      ? Math.floor(
+          Math.floor(1000 * yepUpgradeAmount1 * 50) / (yepUpgradeAmount2 * 2)
+        )
+      : Math.floor(1000 * (yepUpgradeAmount1 * 50) + 1000);
+
   document.getElementById("yepUpgradeCost1-field").innerHTML = yepUpgradeCost1;
+  yepUpgradeCost2 =
+    yepUpgradeAmount2 > 0 ? Math.floor(5000 * yepUpgradeAmount2 * 50) : 5000;
+  document.getElementById("yepUpgradeCost2-field").innerHTML = yepUpgradeCost2;
 }
 
 // Updates POGGERS Upgrade
