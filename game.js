@@ -21,6 +21,8 @@ let yepUpgradeCost1;
 let poggersUpgradeAmount1 = 0;
 let poggersUpgradeCost1;
 
+let shopUpgradeAmont2 = 0;
+let shopUpgradeCost2 = Math.floor(3000 * shopUpgradeAmont2 * 50 + 3000);
 let kekwUpgradeAmount2 = 0;
 let kekwUpgradeCost2;
 let yepUpgradeAmount2 = 0;
@@ -72,9 +74,13 @@ function buyClickUpgrade1() {
     document.getElementById("points-field").innerHTML = (
       Math.round(points * 100) / 100
     ).toFixed(2);
-    shopUpgradeCost1 = Math.floor(Math.pow(30, shopUpgradeAmont1 + 1));
-    document.getElementById("clickUpgradeCost-field").innerHTML =
-      shopUpgradeCost1;
+  }
+}
+
+function buyClickUpgrade2() {
+  if (points >= shopUpgradeCost2) {
+    points -= shopUpgradeCost2;
+    shopUpgradeAmont2++;
   }
 }
 
@@ -124,6 +130,22 @@ function buyEmoteUpgrade2(emoteUpgradeCost, emoteSelected) {
       }
     }
   }
+}
+
+// Updates Click Upgrade
+function updateClickUpgradeGui() {
+  shopUpgradeCost1 =
+    shopUpgradeAmont2 > 0
+      ? Math.floor(
+          Math.floor(Math.pow(30, shopUpgradeAmont1 + 1)) /
+            (shopUpgradeAmont2 * 2)
+        )
+      : Math.floor(Math.pow(30, shopUpgradeAmont1 + 1));
+  document.getElementById("clickUpgradeCost1-field").innerHTML =
+    shopUpgradeCost1;
+  shopUpgradeCost2 = Math.floor(3000 * shopUpgradeAmont2 * 50 + 3000);
+  document.getElementById("clickUpgradeCost2-field").innerHTML =
+    shopUpgradeCost2;
 }
 
 // Updates KEKW Upgrade
@@ -205,6 +227,7 @@ function updateGui() {
   updateYepGui();
   updatePoggersGui();
   updateClicks();
+  updateClickUpgradeGui();
 }
 
 // Calculates Points Per Second
@@ -286,10 +309,10 @@ function changeColorPoggers() {
 // Change Click Upgrade 1 Color
 function changeColorClickUpgrade1() {
   if (points >= shopUpgradeCost1) {
-    document.getElementById("clickUpgradeCost-field").style.color =
+    document.getElementById("clickUpgradeCost1-field").style.color =
       "rgb(74 222 128 / var(--tw-text-opacity))";
   } else {
-    document.getElementById("clickUpgradeCost-field").style.color =
+    document.getElementById("clickUpgradeCost1-field").style.color =
       "rgb(248 113 113 / var(--tw-text-opacity))";
   }
 }

@@ -35,8 +35,8 @@
       <h1 class="text-white text-8xl">Twitsch Emote Shop</h1>
     </div>
 
-    <div class="flex items-center justify-center h-56 items">
-      <div class="flex flex-col items-center justify-center w-80">
+    <div class="flex items-center h-56 border mx-72">
+      <div class="flex flex-col items-center w-80">
         <p id="points-field" class="items-center text-4xl text-white">0.00</p>
         <p class="text-xl text-white">
           <span class="text-yellow-200" id="update-field"></span> p/s
@@ -142,10 +142,16 @@
       <p class="text-6xl text-center text-white">Store</p>
     </div>
     <div class="flex items-center justify-center h-56">
-      <div class="items-center mb-28">
-        <img class="hover:cursor-pointer" onclick="buyClickUpgrade1()" width="80px" src="../src/962936-200.png" /></p>
-        <span class="text-xl font-bold text-red-400" id="clickUpgradeCost-field">30</span>
-      </div>
+      <div>
+        <div class="text-center">
+          <img class="hover:cursor-pointer" onclick="buyClickUpgrade1()" width="80px" src="../src/962936-200.png" /></p>
+          <span class="text-xl font-bold text-red-400" id="clickUpgradeCost1-field">30</span>
+        </div>
+        <div class="text-center">
+          <img class="hover:cursor-pointer" onclick="buyClickUpgrade2()" width="80px" src="../src/962936-200test.png" /></p>
+          <span class="text-xl font-bold text-red-400" id="clickUpgradeCost2-field">3000</span>
+        </div>
+      </div> 
       <div class="ml-14">
         <div class="text-center">
           <img class="hover:cursor-pointer" onclick="buyEmoteUpgrade1(kekwUpgradeCost1,0)" width="80px" src="../src/KEKW.png" >
